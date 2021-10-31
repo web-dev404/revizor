@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ревизор</title>
+    <meta name="robots" content="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+    	href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;0,700;1,600&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+    	rel="stylesheet">
+    	<link rel="stylesheet" href="https://snipp.ru/cdn/jqueryui/1.12.1/jquery-ui.min.css">
+    	<style type="text/css">
+    		#datepicker {
+    			width: 250px;
+    			margin: 0 auto;
+    		}
+    	</style>
+    <link rel="stylesheet" href="assets/css/style.min.css"></head>
+
+<body>
+
+    <svg style='display: none;'>
+    	<symbol id="search" viewBox="0 0 24 24" fill="none">
+    		<path
+    			d="M11 20C15.9706 20 20 15.9706 20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20Z"
+    			stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    		<path d="M22 22L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    	</symbol>
+    
+    	<symbol id="arrow-down" viewBox="0 0 15 15" fill="none">
+    		<path d="M11.875 5.625L7.52302 9.97698L3.17104 5.625" stroke="#AAAAAA" stroke-width="2" stroke-linecap="round"
+    			stroke-linejoin="round" />
+    	</symbol>
+    
+    	<symbol id="edit" viewBox="0 0 20 20" fill="none">
+    		<path
+    			d="M18.0156 4.83059L6.41784 16.4284L2.66803 16.8784L3.11801 13.1285L14.7158 1.53076C14.7347 1.52509 14.7552 1.51919 14.7773 1.51321C14.9362 1.47015 15.1655 1.42534 15.4346 1.42163C15.9527 1.41448 16.6403 1.55553 17.3156 2.23082C17.9909 2.9061 18.1319 3.59365 18.1248 4.11183C18.121 4.38087 18.0762 4.61015 18.0332 4.76908C18.0272 4.79118 18.0213 4.81171 18.0156 4.83059Z"
+    			stroke="white" stroke-width="2" stroke-linecap="round" />
+    		<path d="M11.8893 2.94299L16.3788 7.43256" stroke="white" stroke-width="2" />
+    	</symbol>
+    
+    	<symbol id="location" viewBox="0 0 14 18" fill="none">
+    		<path
+    			d="M6.99913 0C3.18077 0 0.0742188 3.10655 0.0742188 6.92496C0.0742188 10.5342 5.82205 16.7479 6.47736 17.4454L6.99913 18L7.52089 17.4454C8.17636 16.7485 13.9241 10.5342 13.9241 6.92496C13.9244 3.10655 10.8178 0 6.99913 0ZM6.99913 9.7907C5.41917 9.7907 4.13363 8.50516 4.13363 6.92521C4.13363 5.3452 5.41917 4.05971 6.99913 4.05971C8.57943 4.05971 9.86462 5.34525 9.86462 6.92521C9.86462 8.50521 8.57943 9.7907 6.99913 9.7907Z"
+    			fill="#FE5500" />
+    	</symbol>
+    
+    	<symbol id='telephone' viewBox="0 0 18 18" fill="none">
+    		<path
+    			d="M13.6851 11.9073C13.097 11.3267 12.3629 11.3267 11.7786 11.9073C11.3328 12.3493 10.8871 12.7913 10.4489 13.2407C10.329 13.3643 10.2279 13.3906 10.0818 13.3082C9.79337 13.1508 9.48623 13.0235 9.20906 12.8512C7.91681 12.0384 6.83433 10.9934 5.87544 9.81724C5.39975 9.23292 4.97649 8.6074 4.68059 7.90322C4.62066 7.76089 4.6319 7.66725 4.74801 7.55113C5.19374 7.12039 5.62823 6.6784 6.06647 6.23642C6.67701 5.62214 6.67701 4.90298 6.06273 4.28495C5.71438 3.93286 5.36604 3.58826 5.01769 3.23617C4.65811 2.87659 4.30228 2.51327 3.93895 2.15743C3.35089 1.58435 2.61675 1.58435 2.03243 2.16118C1.58295 2.60316 1.1522 3.05638 0.695238 3.49087C0.271981 3.89166 0.0584805 4.38233 0.0135329 4.95541C-0.0576341 5.88808 0.170849 6.7683 0.492974 7.62605C1.1522 9.40147 2.15603 10.9784 3.37336 12.4242C5.0177 14.3794 6.98041 15.9264 9.27648 17.0425C10.3103 17.5445 11.3815 17.9303 12.5464 17.9939C13.348 18.0389 14.0447 17.8366 14.6028 17.2111C14.9848 16.7841 15.4156 16.3946 15.8201 15.9863C16.4194 15.3795 16.4231 14.6453 15.8276 14.046C15.1159 13.3306 14.4005 12.619 13.6851 11.9073Z"
+    			fill="#FE5500" />
+    		<path
+    			d="M12.8069 8.2424C12.9268 8.61042 13.2839 8.86922 13.6654 8.80408C14.0473 8.73888 14.3079 8.37468 14.2 8.00261C13.9103 7.00385 13.3741 6.09932 12.6302 5.3524C11.8351 4.55729 10.8662 4.00494 9.79743 3.73125C9.42198 3.6351 9.06573 3.90675 9.01193 4.29056C8.95814 4.67434 9.22789 5.02394 9.59991 5.13247C10.3671 5.35629 11.0638 5.76744 11.6414 6.345C12.1791 6.88271 12.5748 7.52964 12.8069 8.2424Z"
+    			fill="#FE5500" />
+    		<path
+    			d="M15.1283 2.9141C13.6992 1.48505 11.9307 0.527687 9.97604 0.120032C9.59678 0.0409357 9.24153 0.310891 9.18775 0.694559C9.13395 1.07843 9.40244 1.4304 9.78098 1.51383C11.4326 1.87787 12.9278 2.69838 14.1394 3.90669C15.2804 5.04761 16.0789 6.45103 16.4703 7.99741C16.5652 8.3724 16.9243 8.62961 17.3056 8.56451C17.6875 8.49931 17.9464 8.13572 17.8549 7.75926C17.4095 5.92597 16.4751 4.26426 15.1283 2.9141Z"
+    			fill="#FE5500" />
+    	</symbol>
+    
+    	<symbol id="clock" viewBox="0 0 18 18" fill="none">
+    		<path
+    			d="M9 0C4.0372 0 0 4.0372 0 9C0 13.9628 4.0372 18 9 18C13.9628 18 18 13.9628 18 9C18 4.0372 13.9628 0 9 0ZM13.2803 13.6552C13.134 13.8014 12.942 13.875 12.75 13.875C12.5581 13.875 12.3659 13.8014 12.2198 13.6552L8.46977 9.90527C8.32874 9.76506 8.25005 9.57445 8.25005 9.37505V4.5C8.25005 4.08527 8.58595 3.75005 9 3.75005C9.41405 3.75005 9.74995 4.08527 9.74995 4.5V9.06454L13.2803 12.5947C13.5735 12.8881 13.5735 13.362 13.2803 13.6552Z"
+    			fill="#FE5500" />
+    	</symbol>
+    
+    	<symbol id="close" viewBox="0 0 31 31" fill="none">
+    		<path d="M7.75 7.75004L24.25 24.25" stroke="#CDCDCD" stroke-width="2" stroke-linecap="round"
+    			stroke-linejoin="round" />
+    		<path d="M7.75 24.25L24.25 7.75001" stroke="#CDCDCD" stroke-width="2" stroke-linecap="round"
+    			stroke-linejoin="round" />
+    	</symbol>
+    
+    	<symbol id="check" viewBox="0 0 15 12" fill="none">
+    		<path d="M1.83301 5.72221L5.83995 9.72915L13.8538 1.71528" stroke="#14142B" stroke-width="2"
+    			stroke-linecap="round" />
+    	</symbol>
+    </svg>
+    
+    <div class="burger">
+    	<div class="burger__content">
+    		<div class="burger__header">
+    			<div class="location__btn-block">
+    				<button class="location-btn">
+    					<svg class="header__svg" viewBox="0 0 17 16" fill="none">
+    						<path
+    							d="M2.56013 8.83684C1.73238 8.51847 1.69793 7.36011 2.5053 6.99313L13.462 2.01279C14.3032 1.63043 15.1686 2.49578 14.7862 3.33696L9.80588 14.2937C9.43889 15.1011 8.28053 15.0666 7.96216 14.2389L6.62114 10.7522C6.51957 10.4881 6.31087 10.2794 6.04678 10.1779L2.56013 8.83684Z"
+    							fill="#BDBDBD" stroke="#BDBDBD" stroke-width="2" />
+    					</svg>
+    					<span>Бишкек</span>
+    				</button>
+    
+    				<div class="location-btn__cities">
+    					<button class="locaiton-btn-cities__item">Бишкек</button>
+    					<button class="locaiton-btn-cities__item">Город №2</button>
+    					<button class="locaiton-btn-cities__item">Город №3</button>
+    					<button class="locaiton-btn-cities__item">Город №4</button>
+    					<button class="locaiton-btn-cities__item">Город №5</button>
+    					<button class="locaiton-btn-cities__item">Город №6</button>
+    				</div>
+    			</div>
+    		</div>
+    
+    		<div class="burger__main">
+    			<a href="#" class="nav__link">Категории</a>
+    			<div class="nav__link-block">
+    				<a href="#" class="nav__link">
+    					<span>Клуб Лучших Мастеров</span>
+    					<svg class="nav__svg">
+    						<use xlink:href='#arrow-down'></use>
+    					</svg>
+    				</a>
+    
+    				<div class="nav-link__links">
+    					<button class="locaiton-btn-cities__item">Информация о клубе</button>
+    					<button class="locaiton-btn-cities__item">Партнеры клуба</button>
+    					<button class="locaiton-btn-cities__item">Кодекс клуба</button>
+    					<button class="locaiton-btn-cities__item">Клубная карта</button>
+    					<button class="locaiton-btn-cities__item">Лучшие специалисты месяца</button>
+    				</div>
+    			</div>
+    			<a href="#" class="nav__link">О нас</a>
+    			<a href="#" class="nav__link">Реклама</a>
+    			<a href="#" class="nav__link">Контакты</a>
+    			<a href="#" class="nav__link">Отзывы о Ревизоре</a>
+    		</div>
+    
+    		<div class="burger__footer">
+    			<button class="orange-btn">
+    				<svg class="orange-btn__svg" viewBox="0 0 17 17" fill="none">
+    					<path d="M8.5 2.125V14.875" stroke="white" stroke-width="2" stroke-linecap="round"
+    						stroke-linejoin="round" />
+    					<path d="M2.125 8.5L14.875 8.5" stroke="white" stroke-width="2" stroke-linecap="round"
+    						stroke-linejoin="round" />
+    				</svg>
+    				<span>Добавить Бизнес</span>
+    			</button>
+    
+    			<button class="burger__profile-btn">
+    				<svg class="orange-btn__svg" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+    					<path
+    						d="M2.125 15.2292L2.14464 15.1029C2.35322 13.762 3.22772 12.6068 4.53756 12.2523C5.61665 11.9601 7.02015 11.6875 8.5 11.6875C9.97985 11.6875 11.3834 11.9601 12.4624 12.2523C13.7723 12.6068 14.6468 13.762 14.8554 15.1029L14.875 15.2292"
+    						stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    					<path
+    						d="M8.49992 8.50008C10.4559 8.50008 12.0416 6.91442 12.0416 4.95841C12.0416 3.00241 10.4559 1.41675 8.49992 1.41675C6.54391 1.41675 4.95825 3.00241 4.95825 4.95841C4.95825 6.91442 6.54391 8.50008 8.49992 8.50008Z"
+    						stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    				</svg>
+    				<span>Личный кабинет</span>
+    			</button>
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="specialist-page">
+    	<header class="header">
+    		<nav class="nav">
+    			<div class="container">
+    				<div class="nav__main">
+    					<a href="#" class="nav__link">Категории</a>
+    					<div class="nav__link-block">
+    						<a href="#" class="nav__link">
+    							<span>Клуб Лучших Мастеров</span>
+    							<svg class="nav__svg">
+    								<use xlink:href='#arrow-down'></use>
+    							</svg>
+    						</a>
+    
+    						<div class="nav-link__links">
+    							<button class="locaiton-btn-cities__item">Информация о клубе</button>
+    							<button class="locaiton-btn-cities__item">Партнеры клуба</button>
+    							<button class="locaiton-btn-cities__item">Кодекс клуба</button>
+    							<button class="locaiton-btn-cities__item">Клубная карта</button>
+    							<button class="locaiton-btn-cities__item">Лучшие специалисты месяца</button>
+    						</div>
+    					</div>
+    					<a href="#" class="nav__link">О нас</a>
+    					<a href="#" class="nav__link">Реклама</a>
+    					<a href="#" class="nav__link">Контакты</a>
+    					<a href="#" class="nav__link">Отзывы о Ревизоре</a>
+    				</div>
+    			</div>
+    		</nav>
+    
+    		<div class="header__main">
+    			<div class="container">
+    				<div class="header-main__wrapper">
+    					<div class="header__inner header__inner--burger">
+    						<input type="checkbox" id="checkbox1" class="checkbox1 visuallyHidden">
+    						<label class="checkbox1-label" for="checkbox1">
+    							<div class="hamburger hamburger1">
+    								<span class="bar bar1"></span>
+    								<span class="bar bar2"></span>
+    								<span class="bar bar3"></span>
+    								<span class="bar bar4"></span>
+    							</div>
+    						</label>
+    					</div>
+    
+    					<div class="header__inner">
+    						<a href="#"><img src="assets/img/logo.png" alt="logo" class="logo"></a>
+    						<div class="location__btn-block">
+    							<button class="location-btn">
+    								<svg class="header__svg" viewBox="0 0 17 16" fill="none">
+    									<path
+    										d="M2.56013 8.83684C1.73238 8.51847 1.69793 7.36011 2.5053 6.99313L13.462 2.01279C14.3032 1.63043 15.1686 2.49578 14.7862 3.33696L9.80588 14.2937C9.43889 15.1011 8.28053 15.0666 7.96216 14.2389L6.62114 10.7522C6.51957 10.4881 6.31087 10.2794 6.04678 10.1779L2.56013 8.83684Z"
+    										fill="#BDBDBD" stroke="#BDBDBD" stroke-width="2" />
+    								</svg>
+    								<span>Бишкек</span>
+    							</button>
+    
+    							<div class="location-btn__cities">
+    								<button class="locaiton-btn-cities__item">Бишкек</button>
+    								<button class="locaiton-btn-cities__item">Город №2</button>
+    								<button class="locaiton-btn-cities__item">Город №3</button>
+    								<button class="locaiton-btn-cities__item">Город №4</button>
+    								<button class="locaiton-btn-cities__item">Город №5</button>
+    								<button class="locaiton-btn-cities__item">Город №6</button>
+    							</div>
+    						</div>
+    					</div>
+    
+    					<div class="header__inner">
+    						<button class="orange-btn orange-btn--header">
+    							<svg class="orange-btn__svg" viewBox="0 0 17 17" fill="none">
+    								<path d="M8.5 2.125V14.875" stroke="white" stroke-width="2" stroke-linecap="round"
+    									stroke-linejoin="round" />
+    								<path d="M2.125 8.5L14.875 8.5" stroke="white" stroke-width="2" stroke-linecap="round"
+    									stroke-linejoin="round" />
+    							</svg>
+    							<span>Добавить Бизнес</span>
+    						</button>
+    
+    						<button class="profile-btn">
+    							<svg class="profile-btn__svg" viewBox="0 0 49 49" fill="none">
+    								<rect class="profile-svg__bg" x="0.5" y="0.5" width="48" height="48" rx="9.5" fill="white" />
+    								<path
+    									d="M16 33.5L16.1655 32.4362C16.3741 31.0954 17.2484 29.9469 18.545 29.5466C20.1365 29.0553 22.4905 28.5 25 28.5C27.5095 28.5 29.8635 29.0553 31.455 29.5466C32.7516 29.9469 33.6259 31.0954 33.8345 32.4362L34 33.5"
+    									stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    								<path
+    									d="M25 24C27.7614 24 30 21.7614 30 19C30 16.2386 27.7614 14 25 14C22.2386 14 20 16.2386 20 19C20 21.7614 22.2386 24 25 24Z"
+    									stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    								<rect class="profile-svg__main" x="0.5" y="0.5" width="48" height="48" rx="9.5"
+    									stroke="#E5E5E5" />
+    							</svg>
+    						</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</header>
+    
+    	<div class="bread-crumbs">
+    		<div class="container">
+    			<div class="bread-crumbs__main">
+    				<p>Главная</p>
+    				<div class="bread-crumbs__round"></div>
+    				<p>Красота</p>
+    			</div>
+    		</div>
+    	</div>
+    
+    	<!-- Поиск -->
+    	<div class="container">
+    		<div class="main-block__form main-block__form--category">
+    			<input class="main-block__input" type="text" placeholder="Напишите, чем вам помочь...">
+    			<button class="search-btn">
+    				<svg class="search-btn__svg">
+    					<use xlink:href='#search'></use>
+    				</svg>
+    			</button>
+    		</div>
+    	</div>
+    
+    	<div class="content content--40">
+    		<div class="container">
+    			<div class="content__main">
+    				<div class="content__inner">
+    					<section class="specialist-page__specialist">
+    						<div class="specialist-page__item">
+    							<div class="categories-item__grade">
+    								<div class="categories-grade__name">
+    									Партнер Клуба Лучших Мастеров
+    								</div>
+    
+    								<button class="specialist-page__like">
+    									<svg class="specialist-page__like-svg" viewBox="0 0 44 44" fill="none">
+    										<circle cx="22" cy="22" r="22" fill="#EBEBEB" />
+    										<path
+    											d="M15.0791 15.8291C13.307 17.6013 13.307 20.4745 15.0791 22.2467L21.9527 29.1203L22 29.073L22.0473 29.1204L28.9209 22.2467C30.6931 20.4746 30.6931 17.6013 28.9209 15.8292C27.1488 14.057 24.2755 14.057 22.5034 15.8292L22.3536 15.979C22.1583 16.1742 21.8418 16.1742 21.6465 15.979L21.4967 15.8291C19.7245 14.057 16.8513 14.057 15.0791 15.8291Z"
+    											stroke="#AAAAAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    									</svg>
+    								</button>
+    							</div>
+    
+    							<div class="specialist-item__content">
+    								<div class="specialist-page__profile">
+    									<div class="specialist-page__images">
+    										<img src="assets/img/specialist-page/1.jpg" alt="">
+    
+    										<div class="specialist-page__additional-photos">
+    											<img class="specialist-additional-photos__item" src="assets/img/specialist-page/2.jpg"
+    												alt="">
+    											<img class="specialist-additional-photos__item" src="assets/img/specialist-page/3.jpg"
+    												alt="">
+    											<img class="specialist-additional-photos__item" src="assets/img/specialist-page/4.jpg"
+    												alt="">
+    											<img class="specialist-additional-photos__item" src="assets/img/specialist-page/5.jpg"
+    												alt="">
+    										</div>
+    									</div>
+    
+    									<div class="specialist-page__inner">
+    										<h3 class="categories-profile__name">Екатерина Парикмахер, <span class="blue-text">Женский
+    												мастер</span></h3>
+    										<div class="categories-grade__grade categories-grade__grade--specialist">
+    											<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    													stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    											<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    													stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    											<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    													stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    											<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    													stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    											<svg class='reviews__svg' viewBox="0 0 14 14" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    													stroke="#EBEBEB" stroke-width="2" stroke-miterlimit="3.3292"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    											<p class="categories-grade__count">(187 отзывов)</p>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<svg class="specialist-item__svg">
+    												<use xlink:href='#location'></use>
+    											</svg>
+    
+    											<div>
+    												<p class="specialist-item__address">Бишкек Московская 191/Уметалиева (вход со
+    													стороны
+    													Уметалиева)</p>
+    												<p><a class="specialist-item__show-more" href="#">Показать на карте</a></p>
+    											</div>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<svg class="specialist-item__svg">
+    												<use xlink:href='#telephone'></use>
+    											</svg>
+    
+    											<div>
+    												<p class="specialist-item__bold"><span>0556877782,</span> <span>0707600726</span>
+    												</p>
+    											</div>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<svg class="specialist-item__svg">
+    												<use xlink:href='#clock'></use>
+    											</svg>
+    
+    											<div>
+    												<p><span>Пн-Сб:</span> <span class="specialist-item__bold">09:00 - 18:00</span></p>
+    											</div>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<p><span class="specialist-item__bold">Стаж: </span>12 лет</p>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<p><span class="specialist-item__bold">Стоимость: </span>Консультация 300 сом, услуги
+    												от
+    												1000 сом и выше</p>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<p><span class="specialist-item__bold">Место Работы: </span>Центр красоты Мээрим
+    												Давлетовой</p>
+    										</div>
+    
+    										<div class="specialist-item__contact">
+    											<p><span class="specialist-item__bold">Образование: </span>Высшее, название учебного
+    												учереждения</p>
+    										</div>
+    									</div>
+    								</div>
+    
+    								<div class="specialist-item__skills">
+    									<p class="specialist-item__bold">Специалст: </p>
+    									<div class="specialist-item__skill specialist-item__skill--first">
+    										Пилинг
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Чистка лица
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Мезотерапия
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Биоревитализация
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Врачи
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Красота
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Аппаратная косметология
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Уход за лицом
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Уход за телом
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Косметология тела
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Салоны Красоты
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Косметология лица
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Дерматолог
+    									</div>
+    
+    									<div class="specialist-item__skill">
+    										Косметолог
+    									</div>
+    								</div>
+    
+    								<button class="categories-item__btn categories-item__btn--specialist">
+    									<svg class="categories-item__svg">
+    										<use xlink:href='#edit'></use>
+    									</svg>
+    									Онлайн запись
+    								</button>
+    
+    								<div class="specialist-item__btns">
+    									<button class="specialist-item__btn">
+    										<svg class="specialist-btn__svg specialist-btn__svg--1" viewBox="0 0 18 18" fill="none"
+    											xmlns="http://www.w3.org/2000/svg">
+    											<path d="M6.5 6.5L11.8226 11.8226" stroke="#AAAAAA" stroke-width="1.5"
+    												stroke-linecap="round" stroke-linejoin="round" />
+    											<path d="M6.5 11.8226L11.8226 6.49999" stroke="#AAAAAA" stroke-width="1.5"
+    												stroke-linecap="round" stroke-linejoin="round" />
+    											<circle cx="9" cy="9" r="8.5" stroke="#AAAAAA" />
+    										</svg>
+    
+    										Нашли ошибку?
+    									</button>
+    
+    									<button class="specialist-item__btn">
+    										<svg class="specialist-btn__svg" viewBox="0 0 18 18" fill="none"
+    											xmlns="http://www.w3.org/2000/svg">
+    											<g clip-path="url(#clip0_16:353)">
+    												<path
+    													d="M13.6864 8.5578C14.9049 7.31886 15.5704 5.63931 15.5724 3.90157L15.5771 0H2.43285L2.42336 3.93311C2.41914 5.69222 3.101 7.34685 4.34338 8.59222C5.09267 9.3433 5.9914 9.89047 6.97258 10.2068V12.2747C6.37682 12.8315 6.03862 13.6009 6.03514 14.4246C5.57273 14.5621 5.15637 14.8324 4.83698 15.2106C4.44984 15.6692 4.24923 16.2567 4.24923 16.8569V16.9453H3.32807V18H14.6718V16.9453H13.7506V16.821C13.7506 16.1865 13.5126 15.5815 13.0802 15.1175C12.7731 14.7878 12.3882 14.5506 11.9647 14.4246C11.9612 13.6009 11.623 12.8315 11.0273 12.2747V10.2054C12.0217 9.88404 12.9315 9.32541 13.6864 8.5578ZM12.6959 16.9453H5.30392V16.821C5.30392 16.0927 5.85479 15.4756 6.57018 15.3867H11.4296C12.145 15.4756 12.6959 16.0927 12.6959 16.821V16.9453H12.6959ZM10.1751 12.9323C10.6143 13.2758 10.8772 13.7814 10.9071 14.332H7.09278C7.12266 13.7814 7.38563 13.2758 7.82484 12.9323L8.0273 12.774V10.4527C8.34585 10.4996 8.67003 10.5235 8.99789 10.5235C9.32713 10.5235 9.65271 10.4994 9.9726 10.4522V12.774L10.1751 12.9323ZM3.48501 1.05469H14.5212L14.5177 3.95557C14.5141 6.99557 12.0379 9.46874 8.99789 9.46874H8.99786C7.52095 9.46874 6.13315 8.89291 5.09007 7.84733C4.04702 6.80175 3.4745 5.41255 3.47808 3.93564L3.48501 1.05469Z"
+    													fill="#AAAAAA" />
+    												<path
+    													d="M8.04615 6.80859L9.00016 8.46094L9.95412 6.80859H11.8621L10.9081 5.15625L11.8621 3.50391H9.95412L9.00016 1.85156L8.04615 3.50391H6.13818L7.09215 5.15625L6.13818 6.80859H8.04615ZM9.34518 4.55859H10.0353L9.69024 5.15625L10.0353 5.75391H9.34518L9.00012 6.35156L8.65506 5.75391H7.96494L8.31 5.15625L7.96494 4.55859H8.65506L9.00012 3.96094L9.34518 4.55859Z"
+    													fill="#AAAAAA" />
+    											</g>
+    											<defs>
+    												<clipPath id="clip0_16:353">
+    													<rect width="18" height="18" fill="white" />
+    												</clipPath>
+    											</defs>
+    										</svg>
+    
+    										Вступить в Клуб Лучших Мастеров
+    									</button>
+    								</div>
+    
+    								<div class="specialist-item__social">
+    									<h4 class="specialist-social__title">Расскажи своим друзьям об этом специалисте/месте:</h4>
+    
+    									<div class="specialist-social__items">
+    										<a href="#" class="specialist-social__item">
+    											<svg class="specialist-social__svg" viewBox="0 0 12 22" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<path
+    													d="M9.66389 3.65292H11.6723V0.154917C11.3258 0.10725 10.1341 0 8.7463 0C5.85055 0 3.86689 1.82142 3.86689 5.16908V8.25H0.671387V12.1605H3.86689V22H7.78472V12.1614H10.851L11.3377 8.25092H7.7838V5.55683C7.78472 4.42658 8.08905 3.65292 9.66389 3.65292Z"
+    													fill="#888888" />
+    											</svg>
+    										</a>
+    
+    										<a href="#" class="specialist-social__item">
+    											<svg class="specialist-social__svg" viewBox="0 0 22 22" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<g clip-path="url(#clip0_139:3297)">
+    													<path
+    														d="M9.91732 15.4961C8.21181 15.3182 6.67404 14.8982 5.35746 13.8685C5.1941 13.7404 5.02544 13.6169 4.87636 13.4738C4.3001 12.9203 4.24203 12.2865 4.69802 11.6333C5.08811 11.0743 5.74294 10.9247 6.42358 11.2457C6.55537 11.3079 6.68095 11.3856 6.80122 11.469C9.25489 13.1549 12.6256 13.2014 15.0885 11.5448C15.3325 11.3577 15.5933 11.2051 15.8956 11.1273C16.4834 10.9764 17.0315 11.1922 17.347 11.7065C17.7073 12.2938 17.7027 12.8671 17.2587 13.3231C16.5776 14.0222 15.7585 14.5279 14.8484 14.8809C13.9878 15.2146 13.0452 15.3825 12.1122 15.494C12.253 15.6473 12.3194 15.7226 12.4074 15.8111C13.6742 17.0839 14.9465 18.3514 16.2092 19.6281C16.6394 20.0631 16.7292 20.6025 16.4924 21.1085C16.2334 21.6615 15.6537 22.0253 15.0852 21.9864C14.7251 21.9615 14.4442 21.7822 14.1947 21.5308C13.2387 20.5689 12.2648 19.6246 11.3281 18.6445C11.0556 18.3594 10.9245 18.4134 10.6839 18.6608C9.72216 19.6509 8.74475 20.6258 7.76158 21.5951C7.32011 22.0304 6.79477 22.1087 6.2828 21.8601C5.73856 21.5963 5.39225 21.0408 5.41898 20.4825C5.43741 20.1048 5.62312 19.8163 5.88234 19.5576C7.13601 18.3058 8.38623 17.0507 9.63691 15.7968C9.71963 15.7134 9.79681 15.6249 9.91732 15.4961Z"
+    														fill="#888888" />
+    													<path
+    														d="M10.9564 11.1356C7.91378 11.1252 5.41888 8.60293 5.43662 5.55549C5.45413 2.47442 7.95065 -0.00850337 11.0232 2.18883e-05C14.102 0.00831673 16.5731 2.52695 16.5577 5.64005C16.542 8.68127 14.0298 11.1462 10.9564 11.1356ZM13.7216 5.56287C13.7163 4.04975 12.5112 2.84515 11.0011 2.84377C9.47828 2.84216 8.26239 4.06864 8.27414 5.59559C8.28543 7.10294 9.50086 8.29901 11.0151 8.29348C12.5248 8.28818 13.7266 7.07575 13.7216 5.56287Z"
+    														fill="#888888" />
+    												</g>
+    												<defs>
+    													<clipPath id="clip0_139:3297">
+    														<rect width="22" height="22" fill="white" />
+    													</clipPath>
+    												</defs>
+    											</svg>
+    										</a>
+    
+    										<a href="#" class="specialist-social__item">
+    											<svg class="specialist-social__svg" viewBox="0 0 22 22" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<g clip-path="url(#clip0_139:3304)">
+    													<path
+    														d="M21.8834 16.0599C21.8567 16.0025 21.8319 15.9549 21.8088 15.9167C21.4271 15.2292 20.6977 14.3855 19.621 13.3851L19.5983 13.3622L19.5869 13.3509L19.5754 13.3394H19.5638C19.0751 12.8736 18.7657 12.5604 18.6361 12.4C18.399 12.0945 18.3459 11.7853 18.4755 11.472C18.567 11.2353 18.9109 10.7354 19.5064 9.97167C19.8196 9.5669 20.0677 9.2425 20.2509 8.99809C21.572 7.24164 22.1448 6.11925 21.9691 5.63047L21.9009 5.51625C21.855 5.44748 21.7367 5.38458 21.546 5.32721C21.3548 5.26995 21.1105 5.26049 20.8127 5.29864L17.5138 5.32143C17.4604 5.30249 17.3841 5.30426 17.2847 5.32721C17.1854 5.35015 17.1357 5.36167 17.1357 5.36167L17.0783 5.39035L17.0327 5.42482C16.9945 5.44761 16.9525 5.48769 16.9067 5.54498C16.8611 5.60207 16.8229 5.66907 16.7924 5.74541C16.4333 6.66941 16.0249 7.5285 15.5666 8.32263C15.2841 8.79616 15.0246 9.20655 14.7876 9.55403C14.5509 9.90138 14.3524 10.1573 14.1921 10.3214C14.0317 10.4856 13.8868 10.6171 13.7568 10.7165C13.6269 10.8159 13.5277 10.8579 13.4591 10.8426C13.3903 10.8272 13.3255 10.8119 13.2642 10.7967C13.1573 10.7279 13.0714 10.6344 13.0066 10.5161C12.9415 10.3977 12.8977 10.2487 12.8748 10.0693C12.852 9.88971 12.8385 9.73525 12.8347 9.60538C12.8311 9.47567 12.8328 9.2922 12.8405 9.0555C12.8484 8.81867 12.852 8.65843 12.852 8.57442C12.852 8.28419 12.8577 7.96921 12.869 7.6294C12.8806 7.28958 12.8899 7.02034 12.8977 6.82199C12.9055 6.62344 12.9091 6.41337 12.9091 6.19191C12.9091 5.97045 12.8957 5.79677 12.869 5.67071C12.8427 5.54482 12.8023 5.42261 12.7491 5.30414C12.6955 5.18578 12.6171 5.09423 12.5142 5.02924C12.4112 4.96432 12.283 4.91281 12.1305 4.87453C11.7258 4.78294 11.2103 4.73339 10.584 4.72569C9.16376 4.71044 8.25115 4.80216 7.84643 5.00071C7.68607 5.0846 7.54095 5.19922 7.41121 5.34422C7.27372 5.51228 7.25454 5.60399 7.3538 5.61908C7.81204 5.68772 8.13645 5.85193 8.32738 6.11155L8.39619 6.24912C8.44971 6.34837 8.50315 6.5241 8.55663 6.77605C8.61003 7.028 8.64449 7.30672 8.65965 7.61203C8.69777 8.16957 8.69777 8.64684 8.65965 9.04386C8.62142 9.44105 8.58531 9.75025 8.55085 9.97171C8.51639 10.1932 8.46487 10.3726 8.39619 10.51C8.32738 10.6475 8.2816 10.7315 8.25866 10.762C8.23575 10.7925 8.21665 10.8117 8.20149 10.8192C8.10223 10.8573 7.999 10.8767 7.89216 10.8767C7.78516 10.8767 7.65542 10.8231 7.50272 10.7162C7.35006 10.6092 7.19163 10.4623 7.02742 10.2752C6.86321 10.088 6.67802 9.82648 6.47176 9.49052C6.26567 9.15455 6.05183 8.75749 5.83037 8.29932L5.64714 7.96705C5.5326 7.75329 5.37613 7.44204 5.17758 7.03358C4.9789 6.62496 4.8033 6.2297 4.65064 5.84788C4.58962 5.68752 4.49795 5.56544 4.37578 5.48143L4.31845 5.44696C4.28034 5.41647 4.21916 5.3841 4.13523 5.34959C4.05117 5.31513 3.96347 5.29042 3.87176 5.27521L0.733229 5.298C0.412512 5.298 0.194902 5.37066 0.0803198 5.51577L0.0344629 5.58441C0.0115545 5.62265 0 5.68371 0 5.76776C0 5.85177 0.0229084 5.95488 0.0687653 6.07696C0.526933 7.15378 1.02518 8.19228 1.56351 9.19263C2.10184 10.193 2.56963 10.9988 2.96662 11.6093C3.36368 12.2203 3.76841 12.7969 4.1808 13.339C4.59319 13.8812 4.86617 14.2287 4.99973 14.3813C5.13345 14.5343 5.23848 14.6486 5.31483 14.7249L5.60124 14.9998C5.78451 15.1831 6.05363 15.4026 6.40873 15.6584C6.76391 15.9143 7.15713 16.1663 7.58858 16.4147C8.0201 16.6626 8.52212 16.865 9.09491 17.0215C9.66762 17.1782 10.225 17.2411 10.7673 17.2107H12.0846C12.3517 17.1877 12.5541 17.1036 12.6917 16.9587L12.7373 16.9012C12.7679 16.8557 12.7966 16.7849 12.8231 16.6896C12.8499 16.5941 12.8632 16.489 12.8632 16.3746C12.8554 16.0463 12.8804 15.7504 12.9375 15.487C12.9946 15.2236 13.0597 15.0251 13.1324 14.8914C13.2052 14.7578 13.2873 14.645 13.3786 14.5536C13.4702 14.462 13.5354 14.4066 13.5737 14.3875C13.6117 14.3682 13.6421 14.3552 13.665 14.3474C13.8483 14.2863 14.0639 14.3455 14.3124 14.5251C14.5606 14.7045 14.7934 14.9261 15.0112 15.1895C15.2288 15.453 15.4903 15.7488 15.7957 16.0771C16.1013 16.4055 16.3685 16.6496 16.5975 16.8102L16.8265 16.9477C16.9795 17.0394 17.178 17.1234 17.4224 17.1997C17.6664 17.276 17.8801 17.2951 18.0637 17.257L20.9959 17.2112C21.2859 17.2112 21.5116 17.1632 21.6717 17.0679C21.8321 16.9725 21.9274 16.8673 21.9581 16.753C21.9888 16.6385 21.9904 16.5085 21.9639 16.3633C21.9368 16.2184 21.91 16.1171 21.8834 16.0599Z"
+    														fill="#888888" />
+    												</g>
+    												<defs>
+    													<clipPath id="clip0_139:3304">
+    														<rect width="22" height="22" fill="white" />
+    													</clipPath>
+    												</defs>
+    											</svg>
+    										</a>
+    
+    										<a href="#" class="specialist-social__item">
+    											<svg class="specialist-social__svg" viewBox="0 0 22 22" fill="none"
+    												xmlns="http://www.w3.org/2000/svg">
+    												<g clip-path="url(#clip0_139:3309)">
+    													<path
+    														d="M4.88112 8.29574L1.13407 6.13239C0.410051 7.59552 4.29688e-05 9.2456 0 10.9999C0 12.73 0.414434 14.3829 1.14959 15.859L4.88086 13.7048C4.51284 12.8761 4.30431 11.9621 4.30435 10.9999C4.30439 10.0379 4.51305 9.12413 4.88112 8.29574Z"
+    														fill="#888888" />
+    													<path
+    														d="M18.2154 2.69706C16.2823 1.01553 13.7561 -0.00184514 10.9923 2.51236e-06C7.21102 0.00253767 3.83599 1.93295 1.85303 4.89088L5.60313 7.05607C6.82262 5.39258 8.78453 4.30431 11 4.30435C12.6151 4.3044 14.0956 4.88172 15.252 5.83838C15.5351 6.07252 15.9488 6.05108 16.2086 5.79133L18.2509 3.74898C18.5454 3.45447 18.5297 2.97035 18.2154 2.69706Z"
+    														fill="#888888" />
+    													<path
+    														d="M21.9249 9.72731C21.8821 9.36315 21.5759 9.08751 21.2093 9.08751L12.1959 9.08704C11.7997 9.08704 11.4785 9.40823 11.4785 9.80444V12.6716C11.4785 13.0678 11.7997 13.389 12.1959 13.389H17.2468C16.7816 14.5998 15.9735 15.6407 14.9448 16.3974L17.0901 20.1132C19.2495 18.6499 20.8914 16.4374 21.6146 13.8256C22.0077 12.4055 22.0785 11.0323 21.9249 9.72731Z"
+    														fill="#888888" />
+    													<path
+    														d="M13.7041 17.1179C12.8767 17.4865 11.9634 17.6956 11.0002 17.6957C8.7822 17.6957 6.8214 16.6074 5.60277 14.9446L1.86865 17.1005C3.83499 20.0293 7.1722 22 11.0001 22C12.7306 22 14.3776 21.577 15.8508 20.8362L13.7041 17.1179Z"
+    														fill="#888888" />
+    												</g>
+    												<defs>
+    													<clipPath id="clip0_139:3309">
+    														<rect width="22" height="22" fill="white" />
+    													</clipPath>
+    												</defs>
+    											</svg>
+    										</a>
+    
+    										<a href="#" class="specialist-social__item">
+    											<svg class="specialist-social__svg specialist-social__svg--plus" viewBox="0 0 17 17"
+    												fill="none">
+    												<path d="M8.5 2.125V14.875" stroke="#888888" stroke-width="2" stroke-linecap="round"
+    													stroke-linejoin="round" />
+    												<path d="M2.125 8.5L14.875 8.5" stroke="#888888" stroke-width="2"
+    													stroke-linecap="round" stroke-linejoin="round" />
+    											</svg>
+    										</a>
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    					</section>
+    
+    					<section class="specialist__info">
+    						<div class="specialist-info__tabs">
+    							<button class="specialist-info__tab active">Обзор</button>
+    							<button class="specialist-info__tab">Отзывы</button>
+    						</div>
+    
+    						<div class="specialist-info__content">
+    							<h2 class="specialist-info__title"><span class="blue-text">Информация</span> о специалисте</h2>
+    
+    							<p><span class="medium-text">Прошла обучение в сердце мировой косметологии</span> и пластической
+    								хирургии в Южной Корее Сеуле</p>
+    
+    							<iframe class="specialist-info__video" src="https://www.youtube.com/embed/JzzCWkRZup8"
+    								title="YouTube video player" frameborder="0"
+    								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    								allowfullscreen></iframe>
+    
+    							<p><span class="medium-text">Приём ведёт врач дерматокосметолог,</span> специализируется по лицу и
+    								по телу.
+    								Прием ведется для мужчин и женщин.</p>
+    
+    							<div class="specialist-info__services">
+    								<h3 class="bold-text orange-text">Услуги:</h3>
+    
+    								<ul class="specialist-services__ul">
+    									<li class="specialist-services__li"><span class='medium-text'>Ботокс <span
+    												class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Мезотерапия лица и тела <span
+    												class="specialist-services__span">(от 1 500 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Удаление глубоких морщин (1 500
+    											сом) <span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>даление носогубных складок
+    											<span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Удаление гусинных лапок (от 3
+    											000 сом) <span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Увеличение губ (от 3 000 сом)
+    											<span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>даление носогубных складок
+    											<span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Удаление гусинных лапок (от 3
+    											000 сом) <span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    									<li class="specialist-services__li"><span class='medium-text'>Увеличение губ (от 3 000 сом)
+    											<span class="specialist-services__span">(от 3 000 сом)</span></span></li>
+    								</ul>
+    
+    								<button class="specialist-services__read-more">Читать далее</button>
+    							</div>
+    						</div>
+    					</section>
+    
+    					<section class="specialist__reviews">
+    						<div class="specialist-reviews__header">
+    							<h2 class="specialist-info__title"><span class="orange-text">Отзывы</span> о специалисте</h2>
+    							<button class="specialist-reviews__btn">Оставить отзыв</button>
+    						</div>
+    						<div class="specialist-reviews__wrapper">
+    							<div class="specialist-reviews__item">
+    								<div class="specialist-reviews__profile">
+    									<img class="specialist-reviews__avatar" src="assets/img/specialist-page/reviews/1.jpg"
+    										alt="">
+    									<div>
+    										<p class="bold-text">Имя пользователя</p>
+    										<p class="specialist-reviews__reg-date">Участник с: 01.08.2021</p>
+    										<div
+    											class="categories-grade__grade categories-grade__grade--specialist categories-grade__grade--reviews">
+    											<div>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#EBEBEB" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    											</div>
+    											<p class="categories-grade__count">(187 отзывов)</p>
+    										</div>
+    									</div>
+    								</div>
+    								<p>Кричащий интерьер, как будто в гостях у цыганского барона,а не косметичес.мед.центр. Попала
+    									прочитав отзывы.
+    									На консультации у дерматолога-косметолога Мерим ничего внятного не услышала. Сидела
+    									зевала,бубнила себе под
+    									нос,на вопросы так и не получила профессионального ответа. Пожалела что пошла. Ни ногой
+    									больше.
+    								</p>
+    
+    								<p class="specialist-reviews__date">01.08.2021</p>
+    							</div>
+    						</div>
+    
+    						<div class="specialist-reviews__wrapper">
+    							<div class="specialist-reviews__item">
+    								<div class="specialist-reviews__profile">
+    									<img class="specialist-reviews__avatar" src="assets/img/specialist-page/reviews/2.jpg"
+    										alt="">
+    									<div>
+    										<p class="bold-text">Имя пользователя</p>
+    										<p class="specialist-reviews__reg-date">Участник с: 01.08.2021</p>
+    										<div
+    											class="categories-grade__grade categories-grade__grade--specialist categories-grade__grade--reviews">
+    											<div>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#EBEBEB" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    											</div>
+    											<p class="categories-grade__count">(187 отзывов)</p>
+    										</div>
+    									</div>
+    								</div>
+    								<p>Спасибо большое отличному косметологу Мээрим. После караллового пилинга у меня кожа как у
+    									младенца.</p>
+    
+    								<p class="specialist-reviews__date">01.08.2021</p>
+    							</div>
+    
+    							<div class="specialist-reviews__item specialist-reviews__item--answer">
+    								<div class="specialist-reviews__profile">
+    									<img class="specialist-reviews__avatar" src="assets/img/category-page/1.jpg" alt="">
+    									<div>
+    										<p class="bold-text">Имя пользователя</p>
+    										<p class="specialist-reviews__reg-date">Ответ Давлетова Мээрим</p>
+    									</div>
+    								</div>
+    								<p>Дорогая, Жылдыз Ахмедовна!
+    									Спасибо вам и таким же благодарным, любимым, незаменимым, добрым, ВЕРНЫМ, красоткам моим
+    									клиенткам. Неустанно
+    									повторяю, что именно благодаря Богу и Вам цветёт и расцветаем мое любимое дело и это не
+    									бизнес , а именно
+    									любимое дело.</p>
+    
+    								<p class="specialist-reviews__date">01.08.2021</p>
+    							</div>
+    						</div>
+    
+    						<div class="specialist-reviews__wrapper">
+    							<div class="specialist-reviews__item">
+    								<div class="specialist-reviews__profile">
+    									<img class="specialist-reviews__avatar" src="assets/img/specialist-page/reviews/1.jpg"
+    										alt="">
+    									<div>
+    										<p class="bold-text">Имя пользователя</p>
+    										<p class="specialist-reviews__reg-date">Участник с: 01.08.2021</p>
+    										<div
+    											class="categories-grade__grade categories-grade__grade--specialist categories-grade__grade--reviews">
+    											<div>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg active' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    												<svg class='reviews__svg' viewBox="0 0 14 14" fill="none"
+    													xmlns="http://www.w3.org/2000/svg">
+    													<path
+    														d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    														stroke="#EBEBEB" stroke-width="2" stroke-miterlimit="3.3292"
+    														stroke-linecap="round" stroke-linejoin="round" />
+    												</svg>
+    											</div>
+    											<p class="categories-grade__count">(187 отзывов)</p>
+    										</div>
+    									</div>
+    								</div>
+    								<p>Кричащий интерьер, как будто в гостях у цыганского барона,а не косметичес.мед.центр. Попала
+    									прочитав отзывы.
+    									На консультации у дерматолога-косметолога Мерим ничего внятного не услышала. Сидела
+    									зевала,бубнила себе под
+    									нос,на вопросы так и не получила профессионального ответа. Пожалела что пошла. Ни ногой
+    									больше.
+    								</p>
+    
+    								<p class="specialist-reviews__date">01.08.2021</p>
+    							</div>
+    						</div>
+    
+    						<button class="specialist-services__read-more">Показать ещё</button>
+    
+    						<div class="specialist-reviews__leave-review">
+    							<h2 class="specialist-info__title"><span class="blue-text">оставьте</span> свой отзыв</h2>
+    
+    							<p class="specialist-leave-review__text">Поставьте оценку*</p>
+    
+    							<div class="categories-grade__grade categories-grade__grade--specialist">
+    								<svg class='reviews__svg reviews__svg--choose active' viewBox="0 0 14 14" fill="none"
+    									xmlns="http://www.w3.org/2000/svg">
+    									<path
+    										d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    										stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292" stroke-linecap="round"
+    										stroke-linejoin="round" />
+    								</svg>
+    								<svg class='reviews__svg reviews__svg--choose active' viewBox="0 0 14 14" fill="none"
+    									xmlns="http://www.w3.org/2000/svg">
+    									<path
+    										d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    										stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292" stroke-linecap="round"
+    										stroke-linejoin="round" />
+    								</svg>
+    								<svg class='reviews__svg reviews__svg--choose active' viewBox="0 0 14 14" fill="none"
+    									xmlns="http://www.w3.org/2000/svg">
+    									<path
+    										d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    										stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292" stroke-linecap="round"
+    										stroke-linejoin="round" />
+    								</svg>
+    								<svg class='reviews__svg reviews__svg--choose active' viewBox="0 0 14 14" fill="none"
+    									xmlns="http://www.w3.org/2000/svg">
+    									<path
+    										d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    										stroke="#FFBB56" stroke-width="2" stroke-miterlimit="3.3292" stroke-linecap="round"
+    										stroke-linejoin="round" />
+    								</svg>
+    								<svg class='reviews__svg reviews__svg--choose' viewBox="0 0 14 14" fill="none"
+    									xmlns="http://www.w3.org/2000/svg">
+    									<path
+    										d="M6.30788 2.24135C6.56452 1.62658 7.43548 1.62657 7.69211 2.24134L8.61899 4.46169C8.72155 4.70738 8.94668 4.88028 9.21051 4.91599L11.7042 5.2535C12.3544 5.3415 12.5862 6.16299 12.0778 6.5778L10.1729 8.13225C9.95146 8.31299 9.85198 8.60392 9.91643 8.88242L10.5242 11.5086C10.6792 12.1787 9.92564 12.6867 9.3626 12.2915L7.43086 10.9357C7.17229 10.7543 6.82771 10.7543 6.56914 10.9357L4.63736 12.2916C4.07432 12.6867 3.32073 12.1788 3.4758 11.5086L4.08349 8.88241C4.14793 8.60391 4.04845 8.31299 3.82698 8.13226L1.92213 6.5778C1.41381 6.16298 1.64555 5.3415 2.29573 5.25351L4.78948 4.91599C5.05332 4.88028 5.27844 4.70738 5.38101 4.46169L6.30788 2.24135Z"
+    										stroke="#EBEBEB" stroke-width="2" stroke-miterlimit="3.3292" stroke-linecap="round"
+    										stroke-linejoin="round" />
+    								</svg>
+    								<p class="categories-grade__count">(187 отзывов)</p>
+    							</div>
+    
+    							<textarea class="categories-leave-review__textarea" placeholder="Введите комментарий*"></textarea>
+    
+    							<button class="specialist-leave-review__btn">Оставить отзыв</button>
+    						</div>
+    					</section>
+    
+    					<section class="specialist__same">
+    						<h2 class="specialist-info__title"><span class="orange-text">похожие</span> объявления</h2>
+    
+    						<div class="specialist-same__items">
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/1.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/2.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/3.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/4.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/5.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/6.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/7.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    
+    							<div class="specialist-same__item">
+    								<img class="specialist-same__img" src="assets/img/specialist-page/same/8.jpg" alt="">
+    								<p><span class="blue-text bold-text">Врач Косметолог</span> Джунусалиева Жибек</p>
+    							</div>
+    						</div>
+    					</section>
+    				</div>
+    
+    				<div class="sidebar">
+    					<div class="sidebar__item">
+    						<h2 class="sidebar-item__title"><span class="sidebar-title__span">Лучшие</span> специалисты</h2>
+    
+    						<div class="slider">
+    							<div class="swiper sidebar-slider">
+    								<div class="swiper-wrapper">
+    									<div class="swiper-slide">
+    										<div class="slider__item">
+    											<img src="assets/img/specialists/1.jpg" alt="specialist">
+    											<div class="slider-item__text">
+    												<p class="specialist__name">Дакенов Эмиль Темирбекович</p>
+    												<p class="specialist__speciality">Врач стоматолог, имплантолог</p>
+    											</div>
+    										</div>
+    									</div>
+    
+    									<div class="swiper-slide">
+    										<div class="slider__item">
+    											<img src="assets/img/specialists/2.jpg" alt="specialist">
+    											<div class="slider-item__text">
+    												<p class="specialist__name">Дакенов Эмиль Темирбекович</p>
+    												<p class="specialist__speciality">Врач стоматолог, second</p>
+    											</div>
+    										</div>
+    									</div>
+    
+    									<div class="swiper-slide">
+    										<div class="slider__item">
+    											<img src="assets/img/specialists/3.jpg" alt="specialist">
+    											<div class="slider-item__text">
+    												<p class="specialist__name">Дакенов Эмиль Темирбекович</p>
+    												<p class="specialist__speciality">Врач стоматолог, third</p>
+    											</div>
+    										</div>
+    									</div>
+    
+    									<div class="swiper-slide">
+    										<div class="slider__item">
+    											<img src="assets/img/specialists/1.jpg" alt="specialist">
+    											<div class="slider-item__text">
+    												<p class="specialist__name">Дакенов Эмиль Темирбекович</p>
+    												<p class="specialist__speciality">Врач стоматолог, fourth</p>
+    											</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+    
+    							<div class="swiper-pagination"></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    
+    	<footer class="footer">
+    		<div class="container">
+    			<div class="footer__main">
+    				<a class="footer-logo__link" href="#"><img class="footer__logo" src="assets/img/logo-white.png"
+    						alt="logo-white"></a>
+    
+    				<nav class="footer__nav">
+    					<a href="#" class="nav__link nav__link--footer">Категории</a>
+    					<a href="#" class="nav__link nav__link--footer">
+    						<span>Клуб Лучших Мастеров</span>
+    						<svg class="nav__svg">
+    							<use xlink:href='#arrow-down'></use>
+    						</svg>
+    					</a>
+    					<a href="#" class="nav__link nav__link--footer">О нас</a>
+    					<a href="#" class="nav__link nav__link--footer">Реклама</a>
+    					<a href="#" class="nav__link nav__link--footer">Контакты</a>
+    					<a href="#" class="nav__link nav__link--footer">Отзывы о Ревизоре</a>
+    				</nav>
+    			</div>
+    		</div>
+    	</footer>
+    </div>
+
+    <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://snipp.ru/cdn/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        /* Локализация datepicker */
+        $.datepicker.regional['ru'] = {
+            closeText: 'Закрыть',
+            prevText: 'Предыдущий',
+            nextText: 'Следующий',
+            currentText: 'Сегодня',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь'
+            ],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd.mm.yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+        $(function () {
+            $("#datepicker").datepicker({
+                onSelect: function (date) {
+                    $('#datepicker_value').val(date)
+                }
+            });
+            $("#datepicker").datepicker("setDate", $('#datepicker_value').val());
+        });
+    </script>
+    <script src="assets/js/app.min.js"></script>
+</body>
+
+</html>
